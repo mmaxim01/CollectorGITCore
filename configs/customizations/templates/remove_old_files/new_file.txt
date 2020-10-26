@@ -1,0 +1,2 @@
+/srv/customers/ver/$version/$customer/
+/srv/customers/ver/9-1/whatevercustomer/

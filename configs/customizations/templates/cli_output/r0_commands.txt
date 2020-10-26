@@ -1,0 +1,25 @@
+timestamp enable
+show cluster summary 
+show geographic-redundancy 
+show alarms active | nomore 
+show cluster node crash-summary | nomore 
+show cluster statistics | nomore 
+show cluster data-plane-protection | nomore 
+show cluster control-plane-protection | nomore 
+show cluster node port-stats | nomore 
+show cluster node task | nomore 
+show cluster node processes | nomore 
+show service-construct workflow-data-stats | nomore 
+show service-construct interface aaa-interface-group diameter node-status | nomore 
+show service-construct interface aaa-interface-group diameter peer-cmd-stats | nomore 
+show service-construct interface aaa-interface-group diameter peer-status role primary | nomore 
+show service-construct interface aaa-interface-group diameter peer-status role secondary | nomore 
+show service-construct interface aaa-interface-group diameter statistics | nomore 
+show service-construct interface aaa-interface-group radius-client server-status | nomore 
+show service-construct interface aaa-interface-group radius-client statistics | nomore 
+show ip-protocols bgp router summary | nomore 
+show ip-protocols bgp router ipv4-ucast-af route-table | nomore 
+show ip-protocols bfd instance all-sessions-summary | nomore 
+show infrastructure peer-overload-control counters-summary-cumulative | nomore
+
+

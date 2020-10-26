@@ -1,0 +1,10 @@
+{
+  "template": "$an-$ver-$customer-*",
+    "settings" : {
+    "index" : {
+    "mapping" : {
+    "total_fields.limit": 10000
+  }
+ }
+} 
+}

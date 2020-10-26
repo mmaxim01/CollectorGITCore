@@ -1,0 +1,6 @@
+#!/bin/bash
+#usage ./scriptname nameofthefiletobesent sendeMailaddress customer
+sender_mail_address=$2 
+customer=$3
+
+uuencode $1 $1 | mailx -a $1 -v -r $sender_mail_Address -s "Helathcheck For $customer" List_of_emails@separated.by.space.com   

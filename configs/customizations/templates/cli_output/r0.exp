@@ -1,0 +1,17 @@
+#!/usr/bin/expect
+    spawn ssh -c aes256-cbc -p $PORT_NUMBER -l  admin localhost
+        expect "ord\\: "
+        send "$PASSWORD_KEY\n"
+	sleep 2
+        expect "3000"
+        send "paginate false\n"
+	sleep 2
+        set handle [ open r0_commands.txt r ]
+            while { ! [eof $handle] } {
+                gets $handle command
+		sleep 1
+                expect "*3000*"
+                send "$command\n"
+		sleep 3
+            }
+exit 0

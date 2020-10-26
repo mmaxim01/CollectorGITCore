@@ -1,0 +1,1 @@
+This folder needs to be deployed in /srv/
