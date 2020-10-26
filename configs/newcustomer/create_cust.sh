@@ -14,7 +14,8 @@ version=$2
 mkdir -p /srv/configs/ver/$version/$customer/
 mkdir -p /srv/configs/customizations/customers/$customer/
 cp -Rf /srv/configs/customizations/templates/* /srv/configs/customizations/customers/$customer/ 
-mkdir -p /srv/customers/ver/$version/$customer/logs/cli_output/output/
+mkdir -p /srv/customers/ver/$version/$customer/logs/cli_output/
+cp -Rf /srv/configs/customizations/templates/cli_output/ /srv/customers/ver/$version/$customer/logs/cli_output/
 chmod -Rf 775  /srv/configs/ver/$version
 mkdir -p /srv/configs/customizations/$customer
 chmod -Rf 775 /srv/configs/customizations/$customer
