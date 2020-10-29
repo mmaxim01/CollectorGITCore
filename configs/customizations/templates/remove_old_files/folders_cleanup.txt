@@ -1,1 +1,1 @@
-/srv/customers/ver/$version/$customer/
+/srv/customers/hotstorage/customers/$version/$customer/
