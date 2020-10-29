@@ -15,7 +15,7 @@ else
 		jumpbox=$IP_2
 	fi
 fi
-for line in `cat /srv/configs/customizations/$customer/tunnels/mappings_ssh`; do
+for line in `cat /srv/customers/hotstorage/configs/customizations/$customer/tunnels/mappings_ssh`; do
         	NE_TYPE=$(echo "$line" | awk -F ',' '{print $1}')
 		HOST_NAME=$(echo "$line" | awk -F ',' '{print $2}')
 		LOCAL_PORT=$(echo "$line" | awk -F ',' '{print $3}')
