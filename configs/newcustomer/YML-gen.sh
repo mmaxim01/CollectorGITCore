@@ -18,7 +18,7 @@ CUSTOMER=$1
 VERSION=$2
 $NE_TYPE=$3
 if [! -f /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg ]; then 
-echo "cp /srv/customers/hotstorage/configs/templates/configlist.cfg /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg and edit the file "
+echo "try cp /srv/customers/hotstorage/configs/templates/configlist.cfg /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg and edit the file with the needed csv filegroups"
 echo " exiting"
 exit 1
 fi 
