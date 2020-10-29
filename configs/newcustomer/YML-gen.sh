@@ -18,8 +18,9 @@ CUSTOMER=$1
 VERSION=$2
 $NE_TYPE=$3
 if [! -f /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg ]; then 
-cp /srv/customers/hotstorage/configs/templates/configlist.cfg /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg 
-echo " Going With Default Values found in /srv/customers/hotstorage/configs/templates/configlist.cfg "
+echo "cp /srv/customers/hotstorage/configs/templates/configlist.cfg /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg and edit the file "
+echo " exiting"
+exit 1
 fi 
 
 for CONFFILE in `cat /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NE_TYPE/conflist.cfg`; do
