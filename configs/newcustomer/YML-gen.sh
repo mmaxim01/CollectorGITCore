@@ -1,6 +1,7 @@
 #!/bin/bash
 set -x 
 #usage ./scriptname newtworkelementnameassample customer version
+# create /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NENAME/conflist.cfg like in the template folder 
 NENAME=$1
 CUSTOMER=$2
 VERSION=$3
