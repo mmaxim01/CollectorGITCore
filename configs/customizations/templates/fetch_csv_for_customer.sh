@@ -15,7 +15,7 @@ echo FETCHING STARTED AT $DATE_OF_EXEC
 echo Starting the fetch
 for NETWORK_ELEMETN_NAME in `cat $NETWORK_ELEMENT_LIST`; do
 
-rsync -avz -e "ssh -p $LOCAL_PORT " affirmed@localhost:/opt/Affirmed/NMS/server/ems/data/pm/$NETWORK_ELEMETN_NAME/ /srv/customers/hotstorage/configs/$version/$customer/pm/$NETWORK_ELEMETN_NAME/
+rsync -avz -e "ssh -p $LOCAL_PORT " affirmed@localhost:/opt/Affirmed/NMS/server/ems/data/pm/$NETWORK_ELEMETN_NAME/ /srv/customers/hotstorage/customers/$version/$customer/pm/$NETWORK_ELEMETN_NAME/
 echo Fetch for $NETWORK_ELEMETN_NAME finished
 
 done 
