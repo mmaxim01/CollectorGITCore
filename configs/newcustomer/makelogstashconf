@@ -5,6 +5,13 @@ ver=$2
 netelement_type=$3
 envstate=$4
 
+
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ] || [ -z "$4" ]; then
+  echo 'one or more variables are undefined'        
+  echo " usage ./scriptname customer version NE_TYPE Environment ( Prod / Preprod )"
+ exit 1
+fi
+
 for csv_stripped in `ls -lrt /srv/customers/hotstorage/configs/$ver/$customer/$netelement_type/*.csv | awk '{print $9}' | cut -d'/' -f8 | cut -d'-' -f1`
 	do 
 	if [ -f /srv/customers/hotstorage/configs/$ver/$customer/$netelement_type/$csv_stripped.conf ] 
