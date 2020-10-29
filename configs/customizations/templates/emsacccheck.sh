@@ -9,7 +9,7 @@ echo " | "USGGSN EMS errorcode is $RCUSGGSN   >> /var/log/MCC-STATUS.txt
 
 if [ "$RC" != "0" ] 
 then
-echo You got a fucking problem
+echo You encountered a problem
 
 
 fi
