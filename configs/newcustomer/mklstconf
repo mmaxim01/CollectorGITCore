@@ -35,6 +35,7 @@ csvfile=$(echo $1 |  tr [:upper:] [:lower:])
 netype=$(echo $3 | tr [:upper:] [:lower:])
 customer=$(echo $2 | tr [:upper:] [:lower:])
 version=$(echo $4 | tr [:upper:] [:lower:])
+realm=$(echo $5 | tr [:upper:] [:lower:])
 echo "        user  => \"logstash_writer\""
 echo "        password => \"PASSWORD\""
 echo "        cacert => \"/etc/logstash/config/certs/ca.crt\""
