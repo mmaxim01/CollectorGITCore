@@ -7,8 +7,8 @@ set -x
 #version: 1     :4.4.20(1)-release
 version=$1 
 customer=$2
-filetountar=$(ls -lrtd /srv/customers/ver/$version/$customer/tarred/* | grep -v grep | grep -v mail | tail -1 | awk '{print $9}')
-cd /srv/customers/ver/$version/$customer/
+filetountar=$(ls -lrtd /srv/customers/hotstorage/customers/$version/$customer/tarred/* | grep -v grep | grep -v mail | tail -1 | awk '{print $9}')
+cd /srv/customers/hotstorage/customers/$version/$customer/
 tar  -xvf $filetountar
-chmod -Rf 7777 /srv/customers/ver/$1/
-rsync -a /srv/customers/ver/$version/$customer/pm/ /srv/customers/ver/$version/$customer/csvfolders
+chmod -Rf 7777 /srv/customers/hotstorage/customers/$1/
+rsync -a /srv/customers/hotstorage/customers/$version/$customer/pm/ /srv/customers/hotstorage/customers/$version/$customer/csvfolders
