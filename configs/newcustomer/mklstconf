@@ -4,7 +4,7 @@ echo "input {"
 echo "file {"
 echo "type => \"csv\""
 echo "mode => \"read\""
-echo "path => \"/srv/customers/ver/$4/$2/csvfolders/*/$1-20??-??-??-??-??-??.csv\""
+echo "path => \"/srv/customers/hotstorage/customers/$4/$2/csvfolders/*/$1-20??-??-??-??-??-??.csv\""
 echo "start_position => beginning"
 echo "max_open_files => 4600000"
 echo "ignore_older => 36000"
@@ -14,18 +14,14 @@ echo "}"
 echo "filter{"
 echo "csv {"
 echo "separator => \",\""
-order=$(cat /srv/configs/ver/$4/$2/$3/$1-*.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g'| rev | cut -d',' -f2- | rev )
+order=$(cat /srv/customers/hotstorage/configs/$4/$2/$3/$1-*.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g'| rev | cut -d',' -f2- | rev )
 echo "columns => [$order]"
 echo "}"
-#echo definition
-#for i in `cat /srv/customers/HT_croatia/$1-2019-04-03-01-20-00.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g'`; do echo STARTS HERE $i; done
-#echo mutation
 echo " if ([date] =="\"#timeofcollection\"") "
 echo "        {"
 echo "       drop{} "
 echo "        }"
-for i in `cat /srv/configs/ver/$4/$2/$3/$1-*.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g' | sed 's/,/ /g'`; do echo mutate {convert \=\> "[$i","float"]\} | grep -v "\[\"\,\'"'float\'"'\[\}" | sed 's/float/\"float\"/g'; done
-#echo "mutate { add_field => [\"Networkelementtype\",\"$5\"]} "
+for i in `cat /srv/customers/hotstorage/configs/$4/$2/$3/$1-*.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g' | sed 's/,/ /g'`; do echo mutate {convert \=\> "[$i","float"]\} | grep -v "\[\"\,\'"'float\'"'\[\}" | sed 's/float/\"float\"/g'; done
 echo "date{"
 echo "        match => [\"date\",\"UNIX_MS\"] "
 echo "        target => \"@timestamp\" "
@@ -39,13 +35,12 @@ csvfile=$(echo $1 |  tr [:upper:] [:lower:])
 netype=$(echo $3 | tr [:upper:] [:lower:])
 customer=$(echo $2 | tr [:upper:] [:lower:])
 version=$(echo $4 | tr [:upper:] [:lower:])
-netelement_type=$(echo $5 | tr [:upper:] [:lower:])
 echo "        user  => \"logstash_writer\""
 echo "        password => \"PASSWORD\""
 echo "        cacert => \"/etc/logstash/config/certs/ca.crt\""
 echo "        index  => \"elk-ems-$version-$customer-%{+YYYY.MM.dd}\""
-echo "	      template => \"/srv/configs/ver/$version/$customer/an-$version-$customer.json\""
-echo "        template_name => 'an-$version-$customer'"
+echo "	      template => \"/srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json\""
+echo "        template_name => 'elk-ems-$version-$customer'"
 echo "        template_overwrite => true "
 echo " } "  
 echo " } "
