@@ -1,2 +1,2 @@
 /srv/customers/hotstorage/customers/$version/$customer/
-# EX: /srv/customers/hotstorage/customers/9-1/whatevercustomer/
+# EX: /srv/customers/hotstorage/customers/9-1/SouthPoleTelecom/
