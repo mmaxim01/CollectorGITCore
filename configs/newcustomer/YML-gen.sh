@@ -4,9 +4,9 @@ set -x
 NENAME=$1
 CUSTOMER=$2
 VERSION=$3
-for CONFFILE in `cat /srv/configs/ver/$VERSION/$CUSTOMER/$NENAME/conflist.cfg`; do
+for CONFFILE in `cat /srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NENAME/conflist.cfg`; do
 echo "- pipeline.id: $NENAME-$CONFFILE"
-echo "  path.config: \"/srv/configs/ver/$VERSION/$CUSTOMER/$NENAME/$CONFFILE.conf\" "
+echo "  path.config: \"/srv/customers/hotstorage/configs/$VERSION/$CUSTOMER/$NENAME/$CONFFILE.conf\" "
 echo "  pipeline.workers: 1"
 echo "  pipeline.batch.size: 60"
 echo "  pipeline.batch.delay: 20"
