@@ -8,7 +8,11 @@ set -x
 customer=$1
 version=$2
 
-
+if [ -z "$1" ] || [ -z "$2" ] ; then
+  echo 'one or more variables are undefined'  
+  echo "USAGE : ./SCRIPTNAME CUSTOME VERVERSION" 
+  exit 1
+fi
 
 #                       
 mkdir -p /srv/customers/hotstorage/configs/$version/$customer/
