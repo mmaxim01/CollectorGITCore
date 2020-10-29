@@ -1,9 +1,9 @@
 {
-  "template": "$an-$ver-$customer-*",
+  "template": "elk-ems-$version-$customer-*",
     "settings" : {
     "index" : {
     "mapping" : {
-    "total_fields.limit": 10000
+    "total_fields.limit": 100000
   }
  }
 } 
