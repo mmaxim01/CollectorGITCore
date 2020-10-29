@@ -31,3 +31,4 @@ chmod 777 /srv/customers/coldstorage/$version/$customer/configs/archive/
 echo " To create a new customer configs make sure to add the initial CSV files accordingly "
 echo " Add network element  CSV files into /srv/customers/hotstorage/configs/$version/$customer/NE_TYPE/" 
 echo "check contents of /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg and replicate for your network element"
+echo  " Remember to update the content of /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json " 
