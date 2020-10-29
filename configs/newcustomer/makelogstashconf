@@ -2,15 +2,15 @@
 set -x
 customer=$1 
 ver=$2
-netelement=$3
+netelement_type=$3
 netelement_type=$4
-for csv_stripped in `ls -lrt /srv/configs/ver/$ver/$customer/$netelement/*.csv | awk '{print $9}' | cut -d'/' -f8 | cut -d'-' -f1`
+for csv_stripped in `ls -lrt /srv/customers/hotstorage/configs/$ver/$customer/$netelement_type/*.csv | awk '{print $9}' | cut -d'/' -f8 | cut -d'-' -f1`
 	do 
 	if [ -f /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf ] 
 	then 
 		echo "File already exists"
 	else
-	/srv/configs/newcustomer/mklstconf $csv_stripped $customer $netelement $ver $netelement_type >> /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1
+	/srv/configs/newcustomer/mklstconf $csv_stripped $customer $netelement_type $ver $netelement_root >> /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1
 	cat /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1 | sed 's/\[\"\,\"float\"\]//g' | sed 's/mutate {convert => }//g' | sed 's/site\","float/site\","string/g'| sed 's/date\","float/date\","string/g' | sed 's/_name\","float/_name\","string/g' | sed 's/chassis_id","float/chassis_id","string/g' | sed 's/all_chassis","float/all_chassis","string/g' | sed 's/_type","float/_type","string/g' |sed 's/VMType","float/VMType","string/g' | sed 's/Type","float/Type","string/g'  | sed 's/Name","float/Name","string/g' > /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf
 	rm /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1
 	fi
