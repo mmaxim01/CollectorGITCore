@@ -11,6 +11,6 @@ target=/srv/customers/ver/hotstorage/$ver/$customer/logs/cli_output/output/r0_$I
 
 
 cd $WORKDIR
-for IP in $(cat ./hosts.txt); do 
+#for IP in $(cat ./hosts.txt); do 
     ./r0.exp > $target
-done
+#done
