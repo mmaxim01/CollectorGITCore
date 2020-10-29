@@ -13,7 +13,7 @@ version=$2
 #                       
 mkdir -p /srv/customers/hotstorage/configs/$version/$customer/
 mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer/ /srv/customers/hotstorage/configs/$version/$customer/NetElement_Template/
-cp -Rf /srv/customers/hotstorage/configs/customizations/templates/* /srv/configs/customizations/customers/$version/$customer/ && mv /srv/customers/hotstorage/configs/customizations/$version/$customer/conflist.cfg /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg
+cp -Rf /srv/customers/hotstorage/configs/customizations/templates/* /srv/customers/hotstorage/configs/customizations/customers/$version/$customer/ && mv /srv/customers/hotstorage/configs/customizations/$version/$customer/conflist.cfg /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg
 mkdir -p /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
 cp /srv/customers/hotstorage/configs/customizations/templates/index_exmplate.json  /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json
 cp -Rf /srv/customers/hotstorage/configs/customizations/templates/cli_output/ /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
@@ -30,5 +30,4 @@ chmod 777 /srv/customers/coldstorage/$version/$customer/configs/archive/
 
 echo " To create a new customer configs make sure to add the initial CSV files accordingly "
 echo " Add network element  CSV files into /srv/customers/hotstorage/configs/$version/$customer/NE_TYPE/" 
-echo "check contents of /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg and replicate for your network element"
 echo  " Remember to update the content of /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json " 
