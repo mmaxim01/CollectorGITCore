@@ -18,7 +18,7 @@ else
 	fi
 fi
 #	while read -r line
-for line in `cat /srv/configs/customizations/$customer/tunnels/mappings_cli`; do
+for line in `cat /srv/customers/hotstorage/configs/customizations/$customer/tunnels/mappings_cli`; do
         	NE_TYPE=$(echo "$line" | awk -F ',' '{print $1}')
 		HOST_NAME=$(echo "$line" | awk -F ',' '{print $2}')
 		LOCAL_PORT=$(echo "$line" | awk -F ',' '{print $3}')
@@ -39,6 +39,6 @@ for line in `cat /srv/configs/customizations/$customer/tunnels/mappings_cli`; do
 
 			fi
 done
-# done < "/srv/configs/customizations/vodafone/tunnels/mappings"
+# done < "/srv/customers/hotstorage/configs/customizations/vodafone/tunnels/mappings"
 
 
