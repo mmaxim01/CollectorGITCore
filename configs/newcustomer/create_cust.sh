@@ -15,8 +15,9 @@ mkdir -p /srv/customers/hotstorage/configs/$version/$customer/
 mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer/ /srv/customers/hotstorage/configs/$version/$customer/NetElement_Template/
 cp -Rf /srv/customers/hotstorage/configs/customizations/templates/* /srv/configs/customizations/customers/$version/$customer/ && mv /srv/customers/hotstorage/configs/customizations/$version/$customer/conflist.cfg /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg
 mkdir -p /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
+cp /srv/customers/hotstorage/configs/customizations/templates/index_exmplate.json  /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json
 cp -Rf /srv/customers/hotstorage/configs/customizations/templates/cli_output/ /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
-chmod -Rf 775  /srv/customers/hotstorage/configs/$version
+chmod -Rf 775  /srv/customers/hotstorage/configs/$version 
 mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer
 chmod -Rf 775 /srv/customers/hotstorage/configs/customizations/$version/$customer
 mkdir -p /srv/customers/hotstorage/customers/$version/$customer/tarred /srv/customers/hotstorage/customers/$version/$customer/csvfolders /srv/customers/hotstorage/customers/$version/$customer/recovery /srv/customers/hotstorage/customers/$version/$customer/logs /srv/customers/hotstorage/customers/$version/$customer/tarred/log/ /srv/customers/hotstorage/customers/$version/$customer/tarred/pm/
