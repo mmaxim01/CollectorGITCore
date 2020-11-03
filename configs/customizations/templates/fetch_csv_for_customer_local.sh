@@ -17,3 +17,4 @@ rsync -avz  /srv/customers/coldstorage/$version/$customer/tars/ /srv/customers/h
 
 echo DONE for Execution time $DATE_OF_EXEC
 echo "#################################################"
+
