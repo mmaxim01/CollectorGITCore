@@ -39,6 +39,6 @@ for line in `cat /srv/customers/hotstorage/configs/customizations/$customer/tunn
 
 			fi
 done
-# done < "/srv/customers/hotstorage/configs/customizations/vodafone/tunnels/mappings"
+
 
 
