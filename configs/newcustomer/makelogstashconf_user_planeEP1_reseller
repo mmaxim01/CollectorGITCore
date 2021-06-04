@@ -1,0 +1,25 @@
+#!/bin/bash
+set -x
+customer=$1
+ver=$2
+netelement=$3
+if [ -z "$1" ] || [ -z "$2" ] || [ -z "$3" ]; then
+  echo 'one or more variables are undefined'
+  echo " usage ./scriptname customer version NE_TYPE "
+ exit 1
+fi
+
+
+
+for csv_stripped in `cat /srv/configs/ver/$ver/$customer/conflist.cfg | awk '{print $1}' `
+        do
+        if [ -f /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf ]
+        then
+                echo "File already exists"
+        else
+        /srv/configs/newcustomer/mklstconf_user_planeEP1_reseller $csv_stripped $customer $netelement $ver >> /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1
+        cat /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1 | sed 's/\[\"\,\"float\"\]//g' | sed 's/mutate {convert => }//g' | sed 's/site\","float/site\","string/g'| sed 's/date\","float/date\","string/g' | sed 's/_name\","float/_name\","string/g' | sed 's/chassis_id","float/chassis_id","string/g' | sed 's/all_chassis","float/all_chassis","string/g' | sed 's/_type","float/_type","string/g' |sed 's/VMType","float/VMType","string/g' | sed 's/Type","float/Type","string/g'  | sed 's/Name","float/Name","string/g' | sed 's/_hostname","float/_hostname","string/g' > /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf
+        rm /srv/configs/ver/$ver/$customer/$netelement/$csv_stripped.conf1
+        fi
+done
+
