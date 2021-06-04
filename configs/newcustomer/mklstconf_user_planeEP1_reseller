@@ -1,0 +1,48 @@
+echo "input {"
+echo "file {"
+echo "type => \"csv\""
+echo "path => \"/srv/customers/ver/$4/$2/csvfolders/*upr*/$1-20??-??-??-??-??-??.csv\""
+echo "start_position => beginning"
+echo "max_open_files => 40996"
+echo "ignore_older => 462800"
+echo "close_older => 10"
+echo "}"
+echo "}"
+echo "filter{"
+echo "csv {"
+echo "separator => \",\""
+order=$(cat /srv/configs/ver/$4/$2/$3/$1-*.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g'| rev | cut -d',' -f2- | rev )
+echo "columns => [$order]"
+echo "}"
+echo " if ([date] =="\"#timeofcollection\"") "
+echo "        {"
+echo "       drop{} "
+echo "        }"
+for i in `cat /srv/configs/ver/$4/$2/$3/$1-*.csv | head -1 | sed 's/#//g' | sed 's/\./\-/g' | sed 's/\,/\"\,\"/g' | sed 's/timeofcollection\"/\"date\"/g' | sed 's/\"resourceid\"/\"site\"/g' | sed 's/\"'$1'_service\"/\"VMType\"/g' | sed 's/,/ /g'`; do echo mutate {convert \=\> "[$i","float"]\} | grep -v "\[\"\,\'"'float\'"'\[\}" | sed 's/float/\"float\"/g'; done
+
+
+echo "date{"
+echo "        match => [\"date\",\"UNIX_MS\"] "
+echo "        target => \"@timestamp\" "
+echo "}"
+echo "}"
+echo "output {"
+echo "    elasticsearch {"
+echo "        action => index "
+echo "        hosts  => [\"https://proddata-1:9200\",\"https://proddata-1:9200\",\"https://proddata-2:9200\"]"
+csvfile=$(echo $1 |  tr [:upper:] [:lower:])
+netype=$(echo $3 | tr [:upper:] [:lower:])
+customer=$(echo $2 | tr [:upper:] [:lower:])
+version=$(echo $4 | tr [:upper:] [:lower:])
+netelement_type=$(echo $5 | tr [:upper:] [:lower:])
+echo "        user  => \"logstash_writer\""
+echo "        password => \"0Aff14m3d12#\""
+echo "        cacert => \"/etc/logstash/config/certs/ca.crt\""
+echo "        index  => \"elk-ems-$version-$customer-%{+YYYY.MM.dd}\""
+echo "        template => \"/srv/configs/ver/$version/$customer/elk-ems-$version-$customer.json\""
+echo "        template_name => 'an-$version-$customer'"
+echo "        template_overwrite => true "
+echo " } "
+echo " } "
+
+
