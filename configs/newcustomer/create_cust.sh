@@ -10,28 +10,44 @@ version=$2
 
 if [ -z "$1" ] || [ -z "$2" ] ; then
   echo 'one or more variables are undefined'  
-  echo "USAGE : ./SCRIPTNAME CUSTOME VERVERSION" 
+  echo "USAGE : ./SCRIPTNAME CUSTOMER VERVERSION" 
   exit 1
 fi
 
-#                       
-mkdir -p /srv/customers/hotstorage/configs/$version/$customer/
-mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer/ /srv/customers/hotstorage/configs/$version/$customer/NetElement_Template/
-cp -Rf /srv/customers/hotstorage/configs/customizations/templates/* /srv/customers/hotstorage/configs/customizations/customers/$version/$customer/ && mv /srv/customers/hotstorage/configs/customizations/$version/$customer/conflist.cfg /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg
-mkdir -p /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
-cp /srv/customers/hotstorage/configs/customizations/templates/index_exmplate.json  /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json
-cp -Rf /srv/customers/hotstorage/configs/customizations/templates/cli_output/ /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
-chmod -Rf 775  /srv/customers/hotstorage/configs/$version 
-mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer
-chmod -Rf 775 /srv/customers/hotstorage/configs/customizations/$version/$customer
-mkdir -p /srv/customers/hotstorage/customers/$version/$customer/tarred /srv/customers/hotstorage/customers/$version/$customer/csvfolders /srv/customers/hotstorage/customers/$version/$customer/recovery /srv/customers/hotstorage/customers/$version/$customer/logs /srv/customers/hotstorage/customers/$version/$customer/tarred/log/ /srv/customers/hotstorage/customers/$version/$customer/tarred/pm/
-chmod -Rf 775 /srv/customers/hotstorage/customers/$version
-mkdir -p /srv/customers/coldstorage/$version/$customer/archive/
-chmod 777 /srv/customers/coldstorage/$version/$customer/archive/
-mkdir -p /srv/customers/coldstorage/$version/$customer/configs/archive
-chmod 777 /srv/customers/coldstorage/$version/$customer/configs/archive/
+#            
+
+
+mkdir -p /srv/configs/ver/$version/$customer/
+chmod -Rf 775  /srv/configs/ver/$version
+mkdir -p /srv/configs/customizations/$customer
+chmod -Rf 775 /srv/configs/customizations/$customer
+mkdir -p /srv/customers/ver/$version/$customer/tarred /srv/customers/ver/$version/$customer/csvfolders /srv/customers/ver/$version/$customer/recovery /srv/customers/ver/$version/$customer/logs /srv/customers/ver/$version/$customer/tarred/log/ /srv/customers/ver/$version/$customer/tarred/pm/
+chmod -Rf 775 /srv/customers/ver/$version
+mkdir -p /srv/customers/ver/$version/$customer/archive/
+chmod 777 /srv/customers/ver/$version/$customer/archive/
 
 
 echo " To create a new customer configs make sure to add the initial CSV files accordingly "
-echo " Add network element  CSV files into /srv/customers/hotstorage/configs/$version/$customer/NE_TYPE/" 
-echo  " Remember to update the content of /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json " 
+echo " Add network element folder with CSV files into /srv/configs/ver/$version/$customer"
+
+
+#mkdir -p /srv/customers/hotstorage/configs/$version/$customer/
+#mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer/ /srv/customers/hotstorage/configs/$version/$customer/NetElement_Template/
+#cp -Rf /srv/customers/hotstorage/configs/customizations/templates/* /srv/customers/hotstorage/configs/customizations/customers/$version/$customer/ && mv /srv/customers/hotstorage/configs/customizations/$version/$customer/conflist.cfg /srv/customers/hotstorage/configs/$version/$customer/NetElementTypeTemplate/conflist.cfg
+#mkdir -p /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
+#cp /srv/customers/hotstorage/configs/customizations/templates/index_exmplate.json  /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json
+#cp -Rf /srv/customers/hotstorage/configs/customizations/templates/cli_output/ /srv/customers/hotstorage/customers/$version/$customer/logs/cli_output/
+#chmod -Rf 775  /srv/customers/hotstorage/configs/$version 
+#mkdir -p /srv/customers/hotstorage/configs/customizations/$version/$customer
+#chmod -Rf 775 /srv/customers/hotstorage/configs/customizations/$version/$customer
+#mkdir -p /srv/customers/hotstorage/customers/$version/$customer/tarred /srv/customers/hotstorage/customers/$version/$customer/csvfolders /srv/customers/hotstorage/customers/$version/$customer/recovery /srv/customers/hotstorage/customers/$version/$customer/logs /srv/customers/hotstorage/customers/$version/$customer/tarred/log/ /srv/customers/hotstorage/customers/$version/$customer/tarred/pm/
+#chmod -Rf 775 /srv/customers/hotstorage/customers/$version
+#mkdir -p /srv/customers/coldstorage/$version/$customer/archive/
+#chmod 777 /srv/customers/coldstorage/$version/$customer/archive/
+#mkdir -p /srv/customers/coldstorage/$version/$customer/configs/archive
+#chmod 777 /srv/customers/coldstorage/$version/$customer/configs/archive/
+
+
+#echo " To create a new customer configs make sure to add the initial CSV files accordingly "
+#echo " Add network element  CSV files into /srv/customers/hotstorage/configs/$version/$customer/NE_TYPE/" 
+#echo  " Remember to update the content of /srv/customers/hotstorage/configs/$version/$customer/elk-ems-$version-$customer.json " 
