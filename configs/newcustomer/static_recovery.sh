@@ -3,8 +3,8 @@ set -x
 #title          :regen_conf_and_pipelines_4v9-4.sh
 #description
 #author         :Marian Maxim
-#date           :2021-04-21
-#version:       :1.0
+#date           :2021-07-July
+#version:       :1.1
 
 
 echo " remember to add new csv files in /srv/configs/ver/9-4/att/mcccsvfiles/  and update the list in /srv/configs/ver/9-4/att/conflist.cfg"
