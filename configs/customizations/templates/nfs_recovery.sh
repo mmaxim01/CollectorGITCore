@@ -8,6 +8,18 @@ set -x
 
 
 ####DRP from collector NFS part ################
+#install NFS server locally and configure accordingly ) 
+echo "installing locally nfs-kernel-server"
+sleep 3
+apt install -y nfs-kernel-server
+chown -R nobody:nogroup /srv/
+chmod 777 /srv/
+echo "/srv/ 10.126.181.0/24(rw,sync,no_subtree_check,no_root_squash,no_all_squash)"  >> /etc/exports
+exportfs -a
+systemctl enable nfs-kernel-server && systemctl restart nfs-kernel-server
+
+
+
 
 echo "starting recovery for Logstash-0 mcccontrolplane for NFS"
 ################# DRP  Logstash-0 #####################
