@@ -11,7 +11,7 @@ set -x
 #install NFS server locally and configure accordingly ) 
 echo "installing locally nfs-kernel-server"
 sleep 3
-apt install -y nfs-kernel-server
+apt-get update -y && apt install -y nfs-kernel-server
 chown -R nobody:nogroup /srv/
 chmod 777 /srv/
 echo "/srv/ 10.126.181.0/24(rw,sync,no_subtree_check,no_root_squash,no_all_squash)"  >> /etc/exports
@@ -23,7 +23,7 @@ systemctl enable nfs-kernel-server && systemctl restart nfs-kernel-server
 
 echo "starting recovery for Logstash-0 mcccontrolplane for NFS"
 ################# DRP  Logstash-0 #####################
-ssh prodlogstash-0 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-0 "apt-get update -y && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-0 "mount -a"
 sleep 1
@@ -35,7 +35,7 @@ echo "nfs installed on logstash-0 and started "
 
 echo "sarting recovery for Logstash-1 mccuserplaneep1ims for NFS"
 ################### DRP Logstash-1 ######################
-ssh prodlogstash-1 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-1 "apt-get update -y && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-1 "mount -a"
 sleep 1
@@ -47,7 +47,7 @@ echo " nfs installed on logstash-1 and started"
 
 echo "starting recovery for Logstash-2 mccuserplaneep1resellefor NFS r" 
 ################### DRP Logstash-2 ######################
-ssh prodlogstash-2 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-2 "apt-get update -y && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-2 "mount -a"
 sleep 1
@@ -59,7 +59,7 @@ echo " nfs installed on logstash-2 and started"
 
 echo "starting recovery for Logstash-3 mccuserplaneep1consumer for NFS"
 ################### DRP Logstash-3 ######################
-ssh prodlogstash-3 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-3 "apt-get update -y  && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-3 "mount -a"
 sleep 1
@@ -69,7 +69,7 @@ echo " nfs installed on logstash-3 and started"
 
 echo "starting recovery for Logstash-4 mccuserplaneep2ims for NFS"
 ################### DRP Logstash-4 ######################
-ssh prodlogstash-4 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-4 "apt-get update -y  && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-4 "mount -a"
 sleep 1
@@ -81,7 +81,7 @@ echo "nfs installed on logstash-4 and started"
 
 echo "starting recovery for Logstash-5 mccuserplaneep2reseller for NFS"
 ################### DRP Logstash-5 ######################
-ssh prodlogstash-5 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-5 "apt-get update -y  && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-5 "mount -a"
 sleep 1
@@ -93,7 +93,7 @@ echo "nfs installed on logstash-5 and started"
 
 echo "starting recovery for Logstash-6 mccuserplaneep2consumer"
 ################### DRP Logstash-5 ######################
-ssh prodlogstash-6 "apt-get update && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
+ssh prodlogstash-6 "apt-get update -y && apt install nfs-common -y && mkdir -p /srv && echo "collector:/srv /srv nfs defaults 0 0" >> /etc/fstab"
 sleep 1
 ssh prodlogstash-6 "mount -a"
 sleep 1
