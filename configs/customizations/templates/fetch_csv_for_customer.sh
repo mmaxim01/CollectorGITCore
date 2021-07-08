@@ -8,15 +8,15 @@ set -x
 #                       
 customer=$1
 version=$2
-LOCAL_PORT=$3
+customer1=$3
 NETWORK_ELEMENT_LIST=/srv/customers/hotstorage/configs/customizations/customers/$customer/
 DATE_OF_EXEC=$(date +'%Y-%m-%d-%H:%M:%S')
 echo FETCHING STARTED AT $DATE_OF_EXEC
 echo Starting the fetch
 for NETWORK_ELEMETN_NAME in `cat $NETWORK_ELEMENT_LIST`; do
 
-rsync -avz -e "ssh -p $LOCAL_PORT " affirmed@localhost:/opt/Affirmed/NMS/server/ems/data/pm/$NETWORK_ELEMETN_NAME/ /srv/customers/hotstorage/customers/$version/$customer/pm/$NETWORK_ELEMETN_NAME/
-echo Fetch for $NETWORK_ELEMETN_NAME finished
+rsync -avz -e "ssh -p 22" @10.2.1.98:/net/san/logstore/$customer1/$date-1/z*.tar.gz /srv/customers/ver/$version/$customer/tarred/pm/$date-1
+
 
 done 
 
